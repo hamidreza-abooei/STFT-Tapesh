@@ -3,19 +3,19 @@ close all
 clear
 %% Import Data 
 % data = importdata('Data/Z001.txt');
-% data = importdata('Data/S001.txt');
-% fs = 256;
+data = importdata('Data/S001.txt');
+fs = 256;
 
-[data,fs] = audioread('recording.m4a');
+% [data,fs] = audioread('Data/Recording.m4a');
 data = data(:,1);   
 
 %% preprocessing 
-% data = detrend(data);
-% d = designfilt('bandpassiir','FilterOrder',10, ...
-%     'HalfPowerFrequency1',1,'HalfPowerFrequency2',40, ...
-%     'SampleRate',fs);
-% freqz(d)
-% data = filtfilt(d,data);
+data = detrend(data);
+d = designfilt('bandpassiir','FilterOrder',10, ...
+    'HalfPowerFrequency1',1,'HalfPowerFrequency2',40, ...
+    'SampleRate',fs);
+freqz(d)
+data = filtfilt(d,data);
 
 %% Show Frequency domain of signal 
 figure()
@@ -39,7 +39,6 @@ ylabel("Magnitude");
 xlim([0,length(data)/fs]);
 
 subplot(2,1,2);
-title("STFT Representation");
 
 % this section is for initialization of paramaeters
 window = 40;
@@ -79,6 +78,7 @@ end
 spectrogram(data,windows(minindj(minindi),minindi),...
             overlaps(minindj(minindi),minindi),100,fs,'yaxis');
         % Also Note that FFT window is 100
+title("STFT Representation");
 
 %% Plot Renyi Amount in heatmap
 figure();
