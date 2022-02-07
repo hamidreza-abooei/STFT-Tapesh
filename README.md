@@ -5,6 +5,27 @@ This repository contains some codes for selecting the best
 
 Note that window type is rectangular and FFT Window resolution is 100.
 
+### Results for Human voice signal
+
+After applying Renyie Entropy with different window length and overlap, the result can be represented as a heatmap figure:
+![Audio Renyie](./pictures/audio-1.png)
+
+Then we apply best conditions (minimum Entropy) on image and show the STFT Representatin:
+![Audio STFT](./pictures/audio-2.png)
+
+### Results for preprocessed non-siezure EEG Signal 
+
+![NS Renyie](./pictures/ns1.png)
+![NS STFT](./pictures/ns2.png)
+
+### Results for preprocessed siezure EEG Signal
+
+![NS Renyie](./pictures/s1.png)
+![NS STFT](./pictures/s2.png)
+
+
+
+
 ## Data License
 Data were collected from CHB-MIT Scalp EEG Database provided by physionet.
 
