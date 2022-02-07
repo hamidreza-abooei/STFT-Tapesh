@@ -2,20 +2,31 @@ clc
 close all
 clear
 %% Import Data 
-% data = importdata('Data/Z001.txt');
-data = importdata('Data/S001.txt');
-fs = 256;
+% load("Data/seizure.mat");
+% data =  double(data(:));
+% fs = 256;
 
-% [data,fs] = audioread('Data/Recording.m4a');
+[data,fs] = audioread('Data/Recording.m4a');
 data = data(:,1);   
 
 %% preprocessing 
-data = detrend(data);
-d = designfilt('bandpassiir','FilterOrder',10, ...
-    'HalfPowerFrequency1',1,'HalfPowerFrequency2',40, ...
-    'SampleRate',fs);
-freqz(d)
-data = filtfilt(d,data);
+% Notch = designfilt(...
+%     'bandstopiir','FilterOrder',2,...
+%     'HalfPowerFrequency1',49,'HalfPowerFrequency2',51,...
+%     'DesignMethod','butter','SampleRate',fs);
+% % freqz(Notch);
+% data = filtfilt(Notch, data);
+% data = detrend(data);
+% d = designfilt('bandpassiir','FilterOrder',10, ...
+%     'HalfPowerFrequency1',1,'HalfPowerFrequency2',40, ...
+%     'SampleRate',fs);
+% % freqz(d)
+% data = filtfilt(d,data);
+
+%% Select data
+% data = data(fs*2996:fs*3036); % Seizure
+% data = data(fs*2000:fs*2040); % Non Seizure
+
 
 %% Show Frequency domain of signal 
 figure()
@@ -29,12 +40,13 @@ plot(fshift,powershift)
 title("Frequency Domain of Data")
 
 %% Show signal in time domain
+t = 0:1/fs:(length(data)-1)/fs;
+
 figure();
 subplot(2,1,1)
-t = 0:1/fs:(length(data)-1)/fs;
 plot(t,data);
 title("Time Representation");
-xlabel("Time");
+xlabel("Time (secs)");
 ylabel("Magnitude");
 xlim([0,length(data)/fs]);
 
@@ -86,6 +98,6 @@ renyi_heat_map = heatmap((renyi));
 renyi_heat_map.Colormap = colormap(jet);
 renyi_heat_map.XData = windowval;
 renyi_heat_map.YData = overlap_percentage;
-xlabel("Window length");
+xlabel("Window length (sample)");
 ylabel("overlap percent");
 title("Renyi entropy for diffrent windows and overlaps")
