@@ -84,12 +84,12 @@ while(window < length(data))
     window = round(window *1.5);
 end
 [minvalj, minindj] = min(renyi);
-[minvali, minindi] = min(minvalj);
+[~, minindi] = min(minvalj);
 
 %% Show spectrogram with the best parameters
 spectrogram(data,windows(minindj(minindi),minindi),...
             overlaps(minindj(minindi),minindi),100,fs,'yaxis');
-        % Also Note that FFT window is 100
+        % Also Note that:  It is 100-points FFT 
 title("STFT Representation");
 
 %% Plot Renyi Amount in heatmap
