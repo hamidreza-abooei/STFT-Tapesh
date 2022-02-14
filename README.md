@@ -1,4 +1,4 @@
-# Analysis of Short Time Fourier Transform on EEG and Speech
+# Analysis of Short-Time Fourier Transform (STFT) and Renyie Entropy on EEG and Speech signals
 This repository contains some codes for selecting the best
 - Window Length 
 - Overlap.
