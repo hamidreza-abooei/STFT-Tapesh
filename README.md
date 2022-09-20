@@ -13,12 +13,12 @@ After applying Renyie Entropy with different window length and overlap, the resu
 Then we apply best conditions (minimum Entropy) on image and show the STFT Representatin:
 ![Audio STFT](./pictures/audio-2.png)
 
-### Results for preprocessed non-siezure EEG Signal 
+### Results for preprocessed non-seizure EEG Signal 
 
 ![NS Renyie](./pictures/ns1.png)
 ![NS STFT](./pictures/ns2.png)
 
-### Results for preprocessed siezure EEG Signal
+### Results for preprocessed seizure EEG Signal
 
 ![NS Renyie](./pictures/s1.png)
 ![NS STFT](./pictures/s2.png)
